@@ -1,0 +1,56 @@
+# .pre-commit-config.yaml
+# Pre-commit hooks for P3 Platform services
+# Start simple, we'll add more checks gradually
+
+default_language_version:
+  python: python3.10
+
+repos:
+  # Basic file checks - these just fix obvious issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Fix trailing whitespace
+        description: Removes trailing whitespace automatically
+      
+      - id: end-of-file-fixer
+        name: Fix file endings
+        description: Ensures files end with newline
+      
+      - id: check-yaml
+        name: Check YAML syntax
+        files: \.ya?ml$
+        
+      - id: check-json
+        name: Check JSON syntax
+        
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+        description: Prevents committing merge conflict markers
+        
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=1000']
+        description: Prevents accidentally committing large files
+      
+      - id: mixed-line-ending
+        name: Fix line endings
+        args: ['--fix=lf']
+        description: Ensures consistent line endings (LF)
+
+  # Python import sorting - automatically fixes import order
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: Sort Python imports
+        args: [
+          "--profile", "black",
+          "--line-length", "120",
+          "--multi-line", "3",
+          "--trailing-comma"
+        ]
+        description: Automatically sorts and formats imports
+
+# We'll add ruff in week 2 after everyone is comfortable
