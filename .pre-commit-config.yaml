@@ -1,9 +1,8 @@
 # .pre-commit-config.yaml
-# Pre-commit hooks for P3 Platform services
 # Start simple, we'll add more checks gradually
 
-default_language_version:
-  python: python3.10
+# default_language_version:
+#   python: python3.10
 
 repos:
   # Basic file checks - these just fix obvious issues
